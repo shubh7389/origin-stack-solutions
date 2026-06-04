@@ -8,15 +8,49 @@ import { toast } from "sonner";
 export function Contact() {
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast.success("Message sent! We'll reach out within one business day.");
-      (e.target as HTMLFormElement).reset();
-    }, 700);
+  const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycby0gIQvtL0Zhml9Vqp6eOMf2nojjXjC2ILVvYkU1hpVVgDfHEcrH_GRGL-2ou_YSVzP/exec";
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  const data = {
+    name: (form.elements.namedItem("name") as HTMLInputElement).value,
+    email: (form.elements.namedItem("email") as HTMLInputElement).value,
+    company: (form.elements.namedItem("company") as HTMLInputElement).value,
+    service: (form.elements.namedItem("service") as HTMLInputElement).value,
+    message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
   };
+
+  try {
+    setLoading(true);
+
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to submit");
+    }
+
+    toast.success(
+      "Message sent! We'll reach out within one business day."
+    );
+
+    form.reset();
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to send message. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section id="contact" className="py-24 md:py-32">
@@ -60,9 +94,16 @@ export function Contact() {
                       <Globe className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-wider opacity-80">Website</div>
-                      <div className="font-semibold">www.originstacktech.com</div>
-                    </div>
+                  <div className="text-xs uppercase tracking-wider opacity-80">Website</div>
+                  <a
+                    href="https://originstacktech.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold hover:underline"
+                  >
+                    www.originstacktech.com
+                  </a>
+                </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="h-12 w-12 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center">
