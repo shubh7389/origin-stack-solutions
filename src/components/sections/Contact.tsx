@@ -99,7 +99,7 @@ export function Contact() {
                     href="https://originstacktech.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold hover:underline"
+                    className="font-semibold hover:text-white transition-smooth"
                   >
                     www.originstacktech.com
                   </a>

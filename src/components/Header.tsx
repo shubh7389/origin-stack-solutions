@@ -4,13 +4,24 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import logo from "@/assets/originstack-logo.png";
 
+// const nav = [
+//   { href: "#home", label: "Home" },
+//   { href: "#about", label: "About" },
+//   { href: "#services", label: "Services" },
+//   { href: "#industries", label: "Industries" },
+//   { href: "#process", label: "Process" },
+//   { href: "#contact", label: "Contact" },
+// ];
+
+const isHomePage = window.location.pathname === "/";
+
 const nav = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#industries", label: "Industries" },
-  { href: "#process", label: "Process" },
-  { href: "#contact", label: "Contact" },
+  { href: isHomePage ? "#home" : "/#home", label: "Home" },
+  { href: isHomePage ? "#about" : "/#about", label: "About" },
+  { href: isHomePage ? "#services" : "/#services", label: "Services" },
+  { href: isHomePage ? "#industries" : "/#industries", label: "Industries" },
+  { href: isHomePage ? "#process" : "/#process", label: "Process" },
+  { href: isHomePage ? "#contact" : "/#contact", label: "Contact" },
 ];
 
 function ResponsiveLogo() {
@@ -174,7 +185,9 @@ export function Header() {
             <a href="#contact">Schedule Consultation</a>
           </Button> */}
           <Button variant="brand" asChild>
-            <a href="#contact">Schedule Consultation</a>
+            <a href={isHomePage ? "#contact" : "/#contact"}>
+            Schedule Consultation
+          </a>
           </Button>
         </div>
 

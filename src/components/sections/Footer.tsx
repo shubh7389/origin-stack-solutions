@@ -170,7 +170,14 @@ export function Footer() {
                   info@originstacktech.com
                 </a>
               </li>
-              <li>www.originstacktech.com</li>
+              <a
+                    href="https://originstacktech.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-smooth"
+                  >
+                    www.originstacktech.com
+                  </a>
             </ul>
           </div>
         </div>
@@ -178,14 +185,15 @@ export function Footer() {
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white/50">
           <div>© 2026 OriginStack Solutions. All Rights Reserved.</div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white transition-smooth">
+            <a href="/privacy" className="hover:text-white transition-smooth">
               Privacy
             </a>
-            <a href="#" className="hover:text-white transition-smooth">
+            <a href="/terms" className="hover:text-white transition-smooth">
               Terms
             </a>
           </div>
         </div>
+   
       </div>
     </footer>
   );
